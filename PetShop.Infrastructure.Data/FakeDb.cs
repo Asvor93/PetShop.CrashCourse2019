@@ -16,6 +16,50 @@ namespace PetShop.Infrastructure.Data
 
         public static void InitData()
         {
+            Owner owner1 = new Owner
+            {
+                Id = OwnerId++,
+                FirstName = "Ásvør",
+                LastName = "Rasmussen",
+                Address = "Unicorn Street 5",
+                Email = "adventureTime@Unicorns.com",
+                PhoneNumber = "55667788"
+            };
+            Owners.Add(owner1);
+
+            Owner owner2 = new Owner
+            {
+                Id = OwnerId++,
+                FirstName = "Timon",
+                LastName = "Lion King",
+                Address = "Hakuna Matata",
+                Email = "timon@HakunaMatata.com",
+                PhoneNumber = "90909090"
+            };
+            Owners.Add(owner2);
+
+            Owner owner3 = new Owner
+            {
+                Id = OwnerId++,
+                FirstName = "Pumba",
+                LastName = "Farts a lot",
+                Address = "Hakuna Matata",
+                Email = "timon@HakunaMatata.com",
+                PhoneNumber = "54343665"
+            };
+            Owners.Add(owner3);
+
+            Owner owner4 = new Owner
+            {
+                Id = OwnerId++,
+                FirstName = "Princess Rainicorn",
+                LastName = "Li",
+                Address = "Unicorn Street 8",
+                Email = "adventureTime@Unicorns.com",
+                PhoneNumber = "98797655"
+            };
+            Owners.Add(owner4);
+
             Pet pet1 = new Pet
             {
                 Id = PetId++,
@@ -24,11 +68,12 @@ namespace PetShop.Infrastructure.Data
                 BirthDate = new DateTime(2000, 11, 3),
                 SoldDate = new DateTime(2001, 2, 5),
                 Color = "Black",
-                PreviousOwner = "Donald",
+                PreviousOwner = owner1,
                 Price = 10000
             };
             Pets.Add(pet1);
 
+            
             Pet pet2 = new Pet
             {
                 Id = PetId++,
@@ -37,7 +82,7 @@ namespace PetShop.Infrastructure.Data
                 BirthDate = new DateTime(2012, 5, 30),
                 SoldDate = new DateTime(2018, 10, 13),
                 Color = "Black",
-                PreviousOwner = "Jerry",
+                PreviousOwner = owner1,
                 Price = 15300
             };
             Pets.Add(pet2);
@@ -50,7 +95,7 @@ namespace PetShop.Infrastructure.Data
                 BirthDate = new DateTime(2012, 5, 30),
                 SoldDate = new DateTime(2018, 10, 13),
                 Color = "Brown",
-                PreviousOwner = "Tom",
+                PreviousOwner = owner2,
                 Price = 30000
             };
             Pets.Add(pet3);
@@ -63,7 +108,7 @@ namespace PetShop.Infrastructure.Data
                 BirthDate = new DateTime(2012, 5, 30),
                 SoldDate = new DateTime(2018, 10, 13),
                 Color = "White",
-                PreviousOwner = "Minnie",
+                PreviousOwner = owner4,
                 Price = 100000
             };
             Pets.Add(pet4);
@@ -76,7 +121,7 @@ namespace PetShop.Infrastructure.Data
                 BirthDate = new DateTime(2018, 5, 30),
                 SoldDate = new DateTime(2018, 10, 13),
                 Color = "Black and white",
-                PreviousOwner = "Mickey",
+                PreviousOwner = owner3,
                 Price = 6000
             };
             Pets.Add(pet5);
@@ -89,7 +134,7 @@ namespace PetShop.Infrastructure.Data
                 BirthDate = new DateTime(2012, 5, 30),
                 SoldDate = new DateTime(2018, 10, 13),
                 Color = "orange",
-                PreviousOwner = "Finn",
+                PreviousOwner = owner2,
                 Price = 2000
             };
             Pets.Add(pet6);
@@ -102,21 +147,11 @@ namespace PetShop.Infrastructure.Data
                 BirthDate = new DateTime(2012, 5, 30),
                 SoldDate = new DateTime(2018, 10, 13),
                 Color = "White",
-                PreviousOwner = "Goofy",
+                PreviousOwner = owner4,
                 Price = 20500
             };
             Pets.Add(pet7);
 
-            Owner owner1 = new Owner
-            {
-                Id = OwnerId ++,
-                FirstName = "Ásvør",
-                LastName = "Rasmussen",
-                Address = "Unicorn Street 5",
-                Email = "adventureTime@Unicorns.com",
-                PhoneNumber = "55667788"
-            };
-            Owners.Add(owner1);
         }
     }
 

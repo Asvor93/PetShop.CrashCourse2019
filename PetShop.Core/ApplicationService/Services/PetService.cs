@@ -21,7 +21,7 @@ namespace PetShop.Core.ApplicationService.Services
             return this._petRepository.ReadPets().ToList();
         }
 
-        public Pet AddPet(string name, string petType, DateTime birthDate, DateTime soldDate, string color, string previousOwner,
+        public Pet AddPet(string name, string petType, DateTime birthDate, DateTime soldDate, string color, Owner previousOwner,
             double price)
         {
             Pet pet = new Pet
