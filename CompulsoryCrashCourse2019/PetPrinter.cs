@@ -248,11 +248,13 @@ namespace PetShop.Console2019
                     Console.WriteLine($"The type of pet you are looking for: Id {pet.Id} name: {pet.Name} Type: {pet.PetType}, Birthday: {pet.BirthDate}, Color: {pet.Color}, " +
                                       $"Previous owner: {pet.PreviousOwner.FirstName} {pet.PreviousOwner.LastName}, Price: {pet.Price}, Sold date: {pet.SoldDate}\n");
                 }
+                // Fix later!!!!!
                 else
                 {
                     Console.WriteLine("Not a valid type!");
                 }
             }
+            
         }
 
         public void SortByPrice()
