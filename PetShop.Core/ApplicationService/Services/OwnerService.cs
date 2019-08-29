@@ -29,7 +29,7 @@ namespace PetShop.Core.ApplicationService.Services
 
         public List<Owner> ReaOwners()
         {
-            throw new System.NotImplementedException();
+            return _ownerRepository.ReadAllOwners();
         }
 
         public Owner UpdateOwner(Owner ownerToUpdate)
