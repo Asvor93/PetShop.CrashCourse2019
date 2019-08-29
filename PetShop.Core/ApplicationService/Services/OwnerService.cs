@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using PetShop.Core.DomainService;
 using PetShop.Core.Entity;
 
@@ -10,7 +11,6 @@ namespace PetShop.Core.ApplicationService.Services
         public OwnerService(IOwnerRepository ownerRepository)
         {
             this._ownerRepository = ownerRepository;
-
 
         }
 
@@ -29,17 +29,22 @@ namespace PetShop.Core.ApplicationService.Services
 
         public List<Owner> ReaOwners()
         {
-            return _ownerRepository.ReadAllOwners();
+            return _ownerRepository.ReadAllOwners().ToList();
         }
 
         public Owner UpdateOwner(Owner ownerToUpdate)
         {
-            throw new System.NotImplementedException();
+            return _ownerRepository.UpdateOwner(ownerToUpdate);
         }
 
         public Owner RemoveOwner(Owner ownerToDelete)
         {
-            throw new System.NotImplementedException();
+            return _ownerRepository.DeleteOwner(ownerToDelete.Id);
+        }
+
+        public Owner FindOwnerById(int id)
+        {
+            return _ownerRepository.ReadAllOwners().FirstOrDefault(owner => owner.Id == id);
         }
     }
 }

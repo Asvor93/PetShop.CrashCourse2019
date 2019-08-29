@@ -20,6 +20,8 @@ namespace PetShop.Console2019
             serviceCollection.AddScoped<IPetRepository, PetRepository>();
             serviceCollection.AddScoped<IPrinter, PetPrinter>();
             serviceCollection.AddScoped<IPetService, PetService>();
+            serviceCollection.AddScoped<IOwnerService, OwnerService>();
+            serviceCollection.AddScoped<IOwnerRepository, OwnerRepository>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
             var petPrinter = serviceProvider.GetRequiredService<IPrinter>();

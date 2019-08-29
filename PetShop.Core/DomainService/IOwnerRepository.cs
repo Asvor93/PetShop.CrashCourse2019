@@ -9,9 +9,9 @@ namespace PetShop.Core.DomainService
 
         IEnumerable<Owner> ReadAllOwners();
 
-        Owner UpdateOwner(string firstName, string lastName, string address, string phoneNr, string email);
+        Owner UpdateOwner(Owner ownerToUpdate);
 
-        Owner DeleteOwner(Owner owner);
+        Owner DeleteOwner(int id);
 
     }
 }

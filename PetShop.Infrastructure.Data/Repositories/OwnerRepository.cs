@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using PetShop.Core.DomainService;
 using PetShop.Core.Entity;
 
@@ -16,17 +17,44 @@ namespace PetShop.Infrastructure.Data.Repositories
 
         public IEnumerable<Owner> ReadAllOwners()
         {
-            throw new System.NotImplementedException();
+            return FakeDb.Owners;
         }
 
-        public Owner UpdateOwner(string firstName, string lastName, string address, string phoneNr, string email)
+        public Owner UpdateOwner(Owner ownerToUpdate)
         {
-            throw new System.NotImplementedException();
+            var ownerFromDb = GetOwnerById(ownerToUpdate.Id);
+
+            if (ownerFromDb != null)
+            {
+                ownerFromDb.FirstName = ownerToUpdate.FirstName;
+                ownerFromDb.LastName = ownerToUpdate.LastName;
+                ownerFromDb.Address = ownerToUpdate.Address;
+                ownerFromDb.PhoneNumber = ownerToUpdate.PhoneNumber;
+                ownerFromDb.Email = ownerToUpdate.Email;
+
+                return ownerToUpdate;
+            }
+
+            return null;
         }
 
-        public Owner DeleteOwner(Owner owner)
+        public Owner DeleteOwner(int id)
         {
-            throw new System.NotImplementedException();
+            var ownerToDelete = FakeDb.Owners.FirstOrDefault(owner => owner.Id == id);
+            FakeDb.Owners.Remove(ownerToDelete);
+            return ownerToDelete;
+        }
+
+        public Owner GetOwnerById(int id)
+        {
+            foreach (var owner in FakeDb.Owners)
+            {
+                if (owner.Id == FakeDb.PetId)
+                {
+                    return owner;
+                }
+            }
+            return null;
         }
     }
 }

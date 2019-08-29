@@ -12,18 +12,18 @@ namespace PetShop.Console2019
     public class PetPrinter : IPrinter
     {
         private IPetService service;
-        public PetPrinter(IPetService petService)
+        private IOwnerService oService;
+        public PetPrinter(IPetService petService, IOwnerService ownerService)
         {
             service = petService;
-
- 
+            oService = ownerService;
         }
 
         public void MakeMenu()
         {
             int choice = 0;
 
-            while (choice != 10)
+            while (choice != 14)
             {
                 MenuChoices();
                 while (!int.TryParse(Console.ReadLine(), out choice))
@@ -61,6 +61,18 @@ namespace PetShop.Console2019
                     case 9:
                         FiveCheapPets();
                         break;
+                    case 10:
+                        PrintOwners();
+                        break;
+                    case 11:
+                        NewOwner();
+                        break;
+                    case 12:
+                        UpdateOwner();
+                        break;
+                    case 13:
+                        DeleteOwner();
+                        break;
                     default:
                         ExitMenu();
                         break;
@@ -69,6 +81,8 @@ namespace PetShop.Console2019
                 Console.ReadLine();
             }
         }
+
+        
 
         public void PrintPets()
         {
@@ -96,7 +110,11 @@ namespace PetShop.Console2019
             Console.WriteLine("7. Get pet by type");
             Console.WriteLine("8. Sort pets by price");
             Console.WriteLine("9. Show the five cheapest pets:");
-            Console.WriteLine("10. Exit");
+            Console.WriteLine("10. Print owners");
+            Console.WriteLine("11. Create new owner");
+            Console.WriteLine("12. Update owner");
+            Console.WriteLine("13. Delete owner");
+            Console.WriteLine("14. Exit");
             Console.WriteLine("\nChoose a menu item!");
         }
 
@@ -254,6 +272,81 @@ namespace PetShop.Console2019
             return id;
         }
 
+        public void PrintOwners()
+        {
+            Console.WriteLine("Printing all owners!\n");
+
+            foreach (var owner in oService.ReaOwners())
+            {
+                Console.WriteLine($"Id : {owner.Id}, Firstname: {owner.FirstName}, Lastname: {owner.LastName}, Address: {owner.Address}, " +
+                                  $"Phone number: {owner.PhoneNumber}, Email: {owner.Email}");
+            }
+        }
+
+        public void NewOwner()
+        {
+            Console.WriteLine("Enter firstname: ");
+            var firstName = Console.ReadLine();
+
+            Console.WriteLine("Enter lastname: ");
+            var lastName = Console.ReadLine();
+
+            Console.WriteLine("Enter Address: ");
+            var address = Console.ReadLine();
+
+            Console.WriteLine("Enter phone number: ");
+            var phoneNr = Console.ReadLine();
+
+            Console.WriteLine("Enter email: ");
+            var email = Console.ReadLine();
+
+            oService.AddOwner(firstName, lastName, address, phoneNr, email);
+        }
+
+        public void UpdateOwner()
+        {
+            var id = PrintOwnerById();
+            var ownerToUpdate = oService.FindOwnerById(id);
+
+            Console.WriteLine($"Firstname: {ownerToUpdate.FirstName}, Lastname: {ownerToUpdate.LastName}, Address: {ownerToUpdate.Address}, " +
+                              $"Phone number: {ownerToUpdate.PhoneNumber}, Email: {ownerToUpdate.Email}");
+
+            Console.WriteLine("Enter firstname: ");
+            ownerToUpdate.FirstName = Console.ReadLine();
+
+            Console.WriteLine("Enter lastname: ");
+            ownerToUpdate.LastName = Console.ReadLine();
+
+            Console.WriteLine("Enter address: ");
+            ownerToUpdate.Address = Console.ReadLine();
+
+            Console.WriteLine("Enter phone number: ");
+            ownerToUpdate.PhoneNumber = Console.ReadLine();
+
+            Console.WriteLine("Enter email: ");
+            ownerToUpdate.Email = Console.ReadLine();
+        }
+
+        public void DeleteOwner()
+        {
+            var id = PrintOwnerById();
+            var ownerFound = oService.FindOwnerById(id);
+            oService.RemoveOwner(ownerFound);
+        }
+
+        public int PrintOwnerById()
+        {
+            Console.WriteLine("Enter owner id: ");
+
+            int id;
+
+            while (!int.TryParse(Console.ReadLine(), out id))
+            {
+                Console.WriteLine("Please enter a valid id!");
+            }
+
+            return id;
+        }
 
         public void ExitMenu()
         {
